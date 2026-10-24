@@ -179,6 +179,29 @@
           "type": "string"
         }
       }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event"
+      ],
+      "properties": {
+        "event": {
+          "enum": [
+            "SessionStart",
+            "SessionEnd",
+            "SubagentStart",
+            "SubagentStop"
+          ]
+        },
+        "agent_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
     }
   }
 }
