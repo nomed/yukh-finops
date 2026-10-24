@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "event_id": "synthetic-claude-session-1-turn-1",
+  "tenant_id": "example",
+  "installation_id": "local-test",
+  "user": {
+    "issuer": "https://sso.example.invalid",
+    "subject": "demo-user"
+  },
+  "provider": "claude-code",
+  "entrypoint": "official-vscode-extension",
+  "session_id": "synthetic-session",
+  "turn_id": "synthetic-turn",
+  "observed_at": "2026-10-24T10:00:00Z",
+  "source": {
+    "kind": "synthetic-fixture",
+    "source_version": "0",
+    "evidence_status": "synthetic"
+  },
+  "measurement": {
+    "semantics": "delta",
+    "input_tokens": 100,
+    "output_tokens": 50,
+    "cache_read_tokens": null,
+    "cache_write_tokens": null,
+    "reasoning_tokens": null
+  },
+  "project_reference": null
+}
