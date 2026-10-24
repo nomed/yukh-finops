@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nomed.github.io/yukh-finops/schemas/usage-event.v0.json",
+  "title": "Yukh FinOps usage event v0 (experimental)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "tenant_id",
+    "installation_id",
+    "provider",
+    "entrypoint",
+    "session_id",
+    "observed_at",
+    "source",
+    "measurement"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "installation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "user": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "issuer",
+        "subject"
+      ],
+      "properties": {
+        "issuer": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        }
+      }
+    },
+    "provider": {
+      "enum": [
+        "claude-code",
+        "codex"
+      ]
+    },
+    "entrypoint": {
+      "enum": [
+        "official-vscode-extension",
+        "vscode-terminal",
+        "standalone-cli",
+        "other"
+      ]
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "turn_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "source_version",
+        "evidence_status"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "otel",
+            "hook",
+            "local-session-event",
+            "app-server",
+            "synthetic-fixture"
+          ]
+        },
+        "source_version": {
+          "type": "string"
+        },
+        "evidence_status": {
+          "enum": [
+            "verified",
+            "documented",
+            "unverified",
+            "synthetic"
+          ]
+        }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantics"
+      ],
+      "properties": {
+        "semantics": {
+          "enum": [
+            "delta",
+            "cumulative",
+            "unknown"
+          ]
+        },
+        "input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "cache_read_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "cache_write_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "reasoning_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "project_reference": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "provider_id",
+        "external_project_id"
+      ],
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "external_project_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
